@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Your Pragmatic Catalog</h1>
-
+<h4><%=@session_string%></h4>
 <% @products.each do |product| %>
   <div class="entry">
     <%= image_tag(product.image_url)%>
