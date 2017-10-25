@@ -1,31 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
+<h1>Your Pragmatic Catalog</h1>
 
-<table>
+<% cache @products do %>
   <% @products.each do |product|%>
-    <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+    <% cache product do %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
 
-      <td>
-        <%=image_tag(product.image_url, class:'list_image')%>
-      </td>
+        <td>
+          <%=image_tag(product.image_url, class:'list_image')%>
+        </td>
 
-      <td class = "list_description">
-        <dl>
-          <dt><%=product.title%></dt>
-          <dd><%=truncate(strip_tags(product.description), length: 80) %></dd>
-        </dl>
-      </td>
+        <td class = "list_description">
+          <dl>
+            <dt><%=product.title%></dt>
+            <dd><%=truncate(strip_tags(product.description), length: 80) %></dd>
+          </dl>
+        </td>
 
-      <td class = "list_actions">
-        <%= link_to 'Show', product %><br/>
-        <%= link_to 'Edit', product %><br/>
-        <%= link_to 'Destroy', product, method: :delete,
-        data: {confirm: 'Are you sure?'} %><br/>
-      </td>
-    </tr>
+        <td class = "list_actions">
+          <%= link_to 'Show', product %><br/>
+          <%= link_to 'Edit', product %><br/>
+          <%= link_to 'Destroy', product, method: :delete,
+          data: {confirm: 'Are you sure?'} %><br/>
+        </td>
+      </tr>
+    <%end%>
   <%end%>
-</table>
+<%end%>  
 
 <br />
 
