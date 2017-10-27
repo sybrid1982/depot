@@ -72,10 +72,16 @@ class LineItemsController < ApplicationController
     @line_item = @cart.line_items.find_by_id(params[:id])
     @line_item.decrement
 
-    @line_item.save!
-
     respond_to do |format|
-      format.html {redirect_to store_index_url}
+      if @line_item.save
+        format.html { redirect_to store_index_url }
+        format.js {@current_item = @line_item}
+        format.json { render :show, status: :created, location: @line_item }
+      else
+        format.html { render :new }
+        format.js {@current_item = @line_item}
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+      end
     end
   end
 
