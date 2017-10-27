@@ -5,6 +5,7 @@ class StoreController < ApplicationController
     @products = Product.order(:title)
     @count = session_counter
     @session_string = get_session_count
+    session[:disabled_button] = false
   end
   def session_counter
     session[:counter] ||= 0
