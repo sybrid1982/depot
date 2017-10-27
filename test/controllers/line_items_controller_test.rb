@@ -1,4 +1,4 @@
-require 'test_helper'
+ require 'test_helper'
 
 class LineItemsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -58,5 +58,23 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to store_index_url
+  end
+
+  test "adding three of same product causes correct display in cart" do
+    assert_difference('LineItem.count') do
+      post line_items_url, params: { product_id: products(:ruby).id }
+    end
+
+    follow_redirect!
+
+    assert_select 'h2', 'Your Cart'
+    assert_select 'td', "Programming Ruby 1.9"
+    post line_items_url, params: { product_id: products(:ruby).id }
+    post line_items_url, params: { product_id: products(:ruby).id }
+
+    follow_redirect!
+
+    times = "\u00d7".encode
+    assert_select 'td', "3" + times
   end
 end

@@ -60,11 +60,22 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @name = @line_item.product.title
     @line_item.destroy
     respond_to do |format|
       format.html { redirect_to store_index_url }
       format.json { head :no_content }
+    end
+  end
+
+  def decrement
+    @cart = Cart.find(session[:cart_id])
+    @line_item = @cart.line_items.find_by_id(params[:id])
+    @line_item.decrement
+
+    @line_item.save!
+
+    respond_to do |format|
+      format.html {redirect_to store_index_url}
     end
   end
 
