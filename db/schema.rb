@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20171027183011) do
     t.decimal  "price",      precision: 8, scale: 2
     t.integer  "order_id"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
-    t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 

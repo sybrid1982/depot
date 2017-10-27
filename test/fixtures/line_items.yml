@@ -9,3 +9,6 @@ two:
   product: two
   cart: two
   price: two.price
+
+three:
+  product: ruby
