@@ -70,6 +70,19 @@ class OrdersController < ApplicationController
     end
   end
 
+  def ship_order
+    @time = Time.current
+    @order.set_ship_time(@time)
+
+    respond_to do |format|
+      if @order.save
+        OrderMailer.shipped(@order).deliver_later
+        format.html { redirect_to orders_url, notice: 'Order ship date successfully set.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

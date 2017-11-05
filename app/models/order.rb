@@ -18,4 +18,8 @@ class Order < ApplicationRecord
       line_items << item
     end
   end
+
+  def set_ship_time(date)
+    ship_date = date
+  end
 end
