@@ -6,7 +6,7 @@
 
 <table>
   <tr><th colspan="2">Qty</th><th>Description</th></tr>
-  <%=render @order.line_items-%>
+  <%=render partial: "email_line_item", collection: @order.line_items-%>
 </table>
 
 <p>

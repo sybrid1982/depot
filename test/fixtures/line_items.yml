@@ -12,3 +12,5 @@ two:
 
 three:
   product: ruby
+  price: ruby.price
+  order: one
