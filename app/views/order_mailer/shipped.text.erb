@@ -2,6 +2,6 @@ Dear <%= @order.name %>
 
 Your order of the following items has shipped:
 
-<%=render partial: "email_line_item", collection: @order.line_items-%>
+  <%=render partial: "email_line_item", collection: @order.line_items-%>
 
 Thank you for your order!
