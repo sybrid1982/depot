@@ -1,3 +1,7 @@
-Order#shipped
+Dear <%= @order.name %>
 
-<%= @greeting %>, find me in app/views/order_mailer/shipped.text.erb
+Your order of the following items has shipped:
+
+<%= render @order.line_items -%>
+
+Thank you for your order!
