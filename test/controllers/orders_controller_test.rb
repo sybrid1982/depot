@@ -53,4 +53,5 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to store_index_path
     assert_equal flash[:notice], 'Your cart is empty'
   end
+
 end
