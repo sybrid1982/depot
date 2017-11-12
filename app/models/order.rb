@@ -8,7 +8,7 @@ class Order < ApplicationRecord
   validates :pay_type, inclusion: pay_types.keys
   validates :email, format: {
     with: %r{\.(com|co|edu|org|net)\Z}i,
-    message: 'please enter a valid e-mail address'
+    message: 'Please enter a valid e-mail address'
   }
   has_many :line_items, dependent: :destroy
 
