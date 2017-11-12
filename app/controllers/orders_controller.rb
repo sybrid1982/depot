@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: :new
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :ship_order]
 
   # GET /orders
   # GET /orders.json
@@ -33,8 +33,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
+        clear_cart
         OrderMailer.received(@order).deliver_later
         session[:disabled_button] = false
         format.html { redirect_to store_index_url, notice: 'Thank you for your order.' }
@@ -99,4 +98,10 @@ class OrdersController < ApplicationController
         redirect_to store_index_url, notice: 'Your cart is empty'
       end
     end
+
+    def clear_cart
+      Cart.destroy(session[:cart_id])
+      session[:cart_id] = nil
+    end
+
 end

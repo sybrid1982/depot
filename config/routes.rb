@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post 'decrement', on: :member
   end
 
-  resources :order do
+  resources :orders do
     post 'ship_order', on: :member
   end
 end

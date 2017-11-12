@@ -54,4 +54,20 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_equal flash[:notice], 'Your cart is empty'
   end
 
+  test "Ship date successfully redirects" do
+    post ship_order_order_path(@order)
+    assert_response :redirect
+  end
+
+  test "Ship date updates" do
+    post ship_order_order_path(@order)
+    @order.reload
+    assert_not_nil(@order.ship_date)
+  end
+
+  test "Ship date is ActiveSupport::TimeWithZone" do
+    post ship_order_order_path(@order)
+    @order.reload
+    assert_instance_of(ActiveSupport::TimeWithZone, @order.ship_date)
+  end
 end
