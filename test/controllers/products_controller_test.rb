@@ -11,6 +11,22 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
+  test "denies access when logged out" do
+    delete logout_url
+    get products_url
+    assert_response :redirect
+  end
+
+  test "allows access after login" do
+    delete logout_url
+
+    dave = users(:one)
+    post login_url, params: { name: dave.name, password: 'secret'}
+
+    get products_url
+    assert_response :success
+  end
+
   test "should get index" do
     get products_url
     assert_response :success
