@@ -3,10 +3,14 @@ class StoreController < ApplicationController
   skip_before_action :authorize
   before_action :set_cart
   def index
-    @products = Product.order(:title)
-    @count = session_counter
-    @session_string = get_session_count
-    session[:disabled_button] = false
+    if params[:set_locale]
+      redirect_to store_index_url(locale: params[:set_locale])
+    else
+      @products = Product.order(:title)
+      @count = session_counter
+      @session_string = get_session_count
+      session[:disabled_button] = false
+    end
   end
   def session_counter
     session[:counter] ||= 0
