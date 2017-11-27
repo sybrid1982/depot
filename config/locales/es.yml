@@ -1,0 +1,40 @@
+es:
+  layouts:
+    application:
+      title:            "Biblioteca de Pragmatic"
+      home:             "Inicio"
+      questions:        "Preguntas"
+      news:             "Noticias"
+      contact:          "Contacto"
+
+  date:
+    abbr_day_names:
+      - dom
+      - lun
+      - mar
+      - mié
+      - jue
+      - vie
+      - sáb
+    abbr_month_names:
+      -
+      - ene
+      - feb
+      - mar
+      - abr
+      - may
+      - jun
+      - jul
+      - ago
+      - sep
+      - oct
+      - nov
+      - dic
+
+  time:
+    am: am
+    formats:
+      default:  "%a, %d de %b de %Y a las %H:%M:%S %Z"
+      long:     "%A, %d de %B de %Y a las %I:%M %p"
+      short:    "%d de %b a las %H:%M hrs"
+    pm: pm
